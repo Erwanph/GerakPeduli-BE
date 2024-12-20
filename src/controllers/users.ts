@@ -53,7 +53,7 @@ export const updateUser = async (req: Request, res: Response) : Promise<any> => 
 export const getProfile = async (req: Request, res: Response): Promise<any> => {
     try {
 
-        const sessionToken = req.headers.authorization?.split(" ")[1] || req.cookies['CHEMICLY-AUTH'];
+        const sessionToken = req.headers.authorization?.split(" ")[1] || req.cookies['GERAKPEDULI-AUTH'];
 
         if (!sessionToken) {
             return res.sendStatus(401); 

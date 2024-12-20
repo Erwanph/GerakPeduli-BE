@@ -23,7 +23,7 @@ export const isOwner = async (req: Request, res: Response, next: NextFunction) :
 
 export const isAuthenticated = async (req: Request, res: Response, next: NextFunction) : Promise<any> => {
     try {
-        const sessionToken = req.cookies['CHEMICLY-AUTH'];
+        const sessionToken = req.cookies['GERAKPEDULI-AUTH'];
         // if(!sessionToken){
         //     return res.sendStatus(403);
 

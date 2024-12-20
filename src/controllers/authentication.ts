@@ -56,7 +56,7 @@ export const login = async (req: Request, res: Response) : Promise<any> => {
         user.authentication.sessionToken = authentication(salt, user._id.toString());
 
         await user.save();
-        res.cookie('CHEMICLY-AUTH', user.authentication.sessionToken, {domain: 'localhost', path: '/', httpOnly:true});
+        res.cookie('GERAKPEDULI-AUTH', user.authentication.sessionToken, {domain: 'localhost', path: '/', httpOnly:true});
         return res.status(200).json({user, sessionToken: user.authentication.sessionToken, userId:user._id}).end();
     } catch (error){
         console.log(error);
