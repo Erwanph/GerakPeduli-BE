@@ -63,3 +63,33 @@ export const login = async (req: Request, res: Response) : Promise<any> => {
         return res.sendStatus(400);
     }
 }
+
+export const logout = async (req: Request, res: Response): Promise<any> => {
+    try {
+        // Ambil session token dari cookie
+        const sessionToken = req.cookies['GERAKPEDULI-AUTH'];
+
+        if (!sessionToken) {
+            return res.sendStatus(400); // Tidak ada session token ditemukan
+        }
+
+        // Temukan pengguna berdasarkan session token
+        const user = await getUserByEmail(req.body.email);  // Bisa diganti dengan session atau token identifier lain
+
+        if (!user || user.authentication.sessionToken !== sessionToken) {
+            return res.sendStatus(403); // Unauthorized if session token doesn't match
+        }
+
+        // Hapus session token pada pengguna di database
+        user.authentication.sessionToken = null;
+        await user.save();
+
+        // Hapus cookie session token
+        res.clearCookie('GERAKPEDULI-AUTH', { domain: 'localhost', path: '/' });
+
+        return res.status(200).send('Logged out successfully');
+    } catch (error) {
+        console.log(error);
+        return res.sendStatus(500); // Internal server error
+    }
+};
