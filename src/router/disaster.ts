@@ -4,9 +4,7 @@ import {
     createDisasterHandler,
 } from "../controllers/disaster";
 
-const router = express.Router();
-
-router.get("/", getDisastersHandler);
-router.post("/", createDisasterHandler);
-
-export default router;
+export default (router: express.Router) => {
+    router.get("/", getDisastersHandler);
+    router.post("/", createDisasterHandler);
+};
