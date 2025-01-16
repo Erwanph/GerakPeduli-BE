@@ -6,7 +6,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon"
   },
-  "author": "Timotius Vivaldi",
+  "author": "Erwan Poltak",
   "license": "ISC",
   "description": "",
   "dependencies": {
